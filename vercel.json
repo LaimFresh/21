@@ -1,23 +1,26 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "autosalon-frontend/vue.config.js", 
-        "use": "@vercel/vue"
-      },
-      {
-        "src": "car-dealership-backend/server.js", 
-        "use": "@vercel/node"
+  "version": 2,
+  "builds": [
+    {
+      "src": "autosalon-frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
       }
-    ],
-    "routes": [
-      {
-        "src": "/api/(.*)", 
-        "dest": "/car-dealership-backend/server.js"
-      },
-      {
-        "src": "/(.*)",
-        "dest": "/autosalon-frontend/index.html"
-      }
-    ]
-  }
+    },
+    {
+      "src": "car-dealership-backend/server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)", // Все API-запросы направляются на бэкенд
+      "dest": "/car-dealership-backend/server.js"
+    },
+    {
+      "src": "/(.*)", // Все остальные запросы направляются на фронтенд
+      "dest": "/autosalon-frontend/dist/index.html"
+    }
+  ]
+}
