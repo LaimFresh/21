@@ -15,11 +15,11 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)", // Все API-запросы направляются на бэкенд
+      "src": "/api/(.*)", 
       "dest": "/car-dealership-backend/server.js"
     },
     {
-      "src": "/(.*)", // Все остальные запросы направляются на фронтенд
+      "src": "/(.*)",
       "dest": "/autosalon-frontend/dist/index.html"
     }
   ]
